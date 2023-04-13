@@ -1,10 +1,7 @@
 <template>
   <v-container>
-    <h1 class="text-center mt-10 mb-5 display-3">
-      CI/CD of Cloud Functions including the Service
-    </h1>
-    <h1 class="text-center mt-10 mb-5 display-3">
-      by using Infrastructure as Code
+    <h1 class="text-center mt-10 mb-5 text-h3">
+      CI/CD of Cloud Functions including the Service by using Infrastructure as Code
     </h1>
 
     <v-row justify="center">
@@ -12,91 +9,91 @@
         <v-list-item
           v-for="(item, i) in list_inhalt"
           :key="i"
-          @click="scroll(item)"
+          @click="scroll(item.scroll)"
         >
           {{ i }}. {{ item.name }}
         </v-list-item>
       </v-list>
     </v-row>
     <!-- 1 -->
-    <v-row justify="center" class="introduction">
-      <h2 class="display-1">Introduction</h2>
+    <v-row justify="center" id="introduction">
+      <h2 class="text-h4">Introduction</h2>
     </v-row>
     <ParagraphSnippet :paragraph="'The goal of this blog entry to show and explaine how to use pipelines to create FaaS in an cloud environment and how to automatically install functions in the cluster. In the first part all steps will be explained in a way that you can follow it on your console. In the last stage the structure of the pipeline will be explained. If you are only interested in the pipeline then skip to chapter 5.'"></ParagraphSnippet>
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">OpenFaas</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">OpenFaas</h3>
     </v-row>
     <ParagraphSnippet :paragraph="'OpenFaas is an open-source project, which you can use to host your own FaaS.'"></ParagraphSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">CI/CD</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">CI/CD</h3>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'This pipeline focueses more on the deployment aspects of CI/CD. The terraform language is not a typical programming language, so testing and integrating is not handled. Although the amount of lines of code can not be compared to a typical programming language.'"
+      :paragraph="'This pipeline focuses on the deployment aspects of CI/CD.'"
     ></ParagraphSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Github Actions</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Github Actions</h3>
     </v-row>
     <ParagraphSnippet
-      :paragraph="'If their are any changes in the terraform code or a function is pushed to the repository, the pipeline will be started and execute the code of the pipeline'"
+      :paragraph="'If their are any changes in the terraform code or a function is pushed to the repository, the pipeline will be started and execute the code of the pipeline.'"
     ></ParagraphSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Terraform</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Terraform</h3>
     </v-row>
     <ParagraphSnippet
       :paragraph="'Terraform is a descriptive language for infrastructure. Terraform is used, to describe the Kubernetes cluster and configure a public IP in the Google Cloud.'"
     ></ParagraphSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Kubernetes</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Kubernetes</h3>
     </v-row>
     <ParagraphSnippet
-      :paragraph="'Kubernetes allows to automate, scale and manage container. Openfaas recommands using Kubernetes instead of a single container. It allows to have the container in different locations in the Google Cloud to increase uptime security.'"
+      :paragraph="'Kubernetes allows to automate, scale and manage container. OpenFaas recommands using Kubernetes instead of a single container. It allows to have the container in different locations in the Google Cloud to increase uptime security.'"
     ></ParagraphSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Google Cloud</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Google Cloud</h3>
     </v-row>
     <ParagraphSnippet
-      :paragraph="'Google Cloud is one of the biggest Cloud Provider. It has a generous start credit, if you create a new account. The following Kubernetes cluster are paid services and will be deducted from your balance.'"
+      :paragraph="'Google Cloud is one of the biggest Cloud Provider. It has a generous credit policy, if you create a new account. The following Kubernetes cluster are paid services and will be deducted from your balance.'"
     ></ParagraphSnippet>
 
     <!-- 2 -->
-    <v-row justify="center" class="google">
-      <h2 class="display-1">Create a Kuberntes cluster in the Cloud with Terraform</h2>
+    <v-row justify="center" id="google">
+      <h2 class="text-h4">Create a Kuberntes cluster in the Cloud with Terraform</h2>
     </v-row>
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Configure Google Cloud</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Configure Google Cloud</h3>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'Install the Google Cloud SDK to your system.'"
+      :paragraph="'There are three steps in the initialization process. Firstly, install the Google Cloud SDK to your system.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ sudo apt install google-cloud-sdk']"
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'The next step is to connect your local Google Cloud instance to your GCP account.'"
+      :paragraph="'Secondly, connect your local Google Cloud instance to your GCP account. '"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="['$ gcloud init']"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'Last step of the initialization process is to add the Google Account to the Application Default Credentials. That is necessary that Terraform can access the Credentials from Google Cloud.'"
+      :paragraph="'Lastly, add the Google Account to the Application Default Credentials, so that Terraform can access the Credentials from Google Cloud.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ gcloud auth application-default login']"
     ></CmdSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Configure Kubernetes via Terraform</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Configure Kubernetes via Terraform</h3>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'The Terraform setup is based on the on a tutorial from Hashicorp. The tutorial can be found under the following link: https://github.com/hashicorp/learn-terraform-provision-gke-cluster. The tutorial is used as a base and will be changed and exetended for the need of OpenFaas.'"
+      :paragraph="'The Terraform setup is based on a tutorial from Hashicorp. The tutorial can be found under the following link: https://github.com/hashicorp/learn-terraform-provision-gke-cluster. The tutorial is used as a base and will be changed and extended for the need of OpenFaas.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="[
@@ -105,70 +102,70 @@
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'If you cloned the repository, you need to change the starting repository for Terraform.'"
+      :paragraph="'If you cloned the repository, change the starting repository for Terraform.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ cd learn-terraform-provision-gke-cluster']"
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'The next step is changing the terraform.tfvars file. You need to enter your Google Project ID and add the region where you want the cluster be created.'"
+      :paragraph="'The next step is changing the terraform.tfvars file. Enter your Google Project ID and add the region where you want the cluster to be created.'"
     ></ParagraphSnippet>
     <Code-Snippet :code_array="project"></Code-Snippet>
 
     <ParagraphSnippet
-      :paragraph="'If you don\'t know your Project_ID, you can get it with the following command.'"
+      :paragraph="'If you do not know your Project_ID, you can get it with the following command.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ gcloud config get-value project']"
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'As next you describe the number of Google Kubernetes Engine nodes, which will be created in the cloud. In the example from Terraform are two nodes declared. A error will be raised, when you use the free trail of Google Cloud. The next resource is describes the GKE directly. For the Cluster is a name, the location, set the remove_default_node_pool to true and give a initial number of nodes. The name and location derives from the terraform.tfvars file. The remove_default_node_pool has to do, that we want to use our own cluster for more flexibility and customization and therefore remove the default cluster.'"
+      :paragraph="'Describe the number of Google Kubernetes Engine nodes, which will be created in the cloud. In the example from Terraform are two nodes declared. An error will be raised when you use the free trail of Google Cloud. The next resource describes the GKE directly. Define the name and location for the Cluster, set the remove_default_node_pool to true and give an initial number of nodes. Name and location derive from the terraform.tfvars file. The remove_default_node_pool removes the default cluster as creating a cluster on your own increases flexibility and opens options for customization.'"
     ></ParagraphSnippet>
     <Code-Snippet :code_array="cluster_nodes"></Code-Snippet>
 
     <ParagraphSnippet
-      :paragraph="'The next step is to declare the seperatly managed node pool with the google_container_node_pool Resource. Here we need a name and location again. Then we use the cluster and node_count you created earlier. The important information here is the machine_type. The machine_type variable declares the machine used in the Cluster. The machine has a big impact on the cost. If you choose a more expensive machine, you will maybe burn through the free trail. '"
+      :paragraph="'Next, declare the seperately managed node pool with the google_container_node_pool resource. Again, define the name and location. Then use the cluster and node_count you created earlier. The important information here is the machine_type. The machine_type variable declares the machine used in the Cluster. Machine types vary in their impact on the costs deducted from your Google Cloud account. A more expensive machine will potentially burn through the free trail.'"
     ></ParagraphSnippet>
     <Code-Snippet :code_array="node_pool"></Code-Snippet>
 
     <ParagraphSnippet
-      :paragraph="'For the state management you can use also Google Cloud. To store the state of the system is necessary for the right functioning of Terraform. If you want to store your state in the Google Cloud, you can create a Google Cloud Storage. Then you need to add your bucket name in the file below. You can also save the state at other provider and then need to change the code snippet below.'"
+      :paragraph="'For the state management you can also use Google Cloud. To store the state of the system you need the right functioning of Terraform. If you want to store your state in the Google Cloud, you can create a Google Cloud Storage. Then add your bucket name in the file below. You can also save the state at another provider but then you need to change the code snippet below.'"
     ></ParagraphSnippet>
     <Code-Snippet :code_array="backend_store"></Code-Snippet>
 
     <ParagraphSnippet
-      :paragraph="'With the command terraform init gets the state and providers intialized.'"
+      :paragraph="'The command “terraform init” gets the state and providers initialized.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="terraform_init"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'Apply executes the terraform script and creates the cluster.'"
+      :paragraph="'“apply” executes the terraform script and creates the cluster.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="terraform_apply"></CmdSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Get Kubernetes Configuration</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Get Kubernetes Configuration</h3>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'For the pipeline it is necessary to add the kubeconfig from the created Cluster in the Google Cloud, so that you can access the cluster and install OpenFaas in to it. The first step is to download the Kubernetes Commandline tool.'"
+      :paragraph="'For the pipeline, add the kubeconfig from the created Cluster in the Google Cloud, so that you can access the cluster and install OpenFaas into it. To do that, download the Kubernetes Commandline tool.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="['$ sudo apt install kubectl']"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'The second step is to get the kubeconfig from Google and save it to your local system.'"
+      :paragraph="'Then, get the kubeconfig from Google and save it to your local system.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="kubernetes_entry"></CmdSnippet>
 
     <!-- 3 -->
-    <v-row justify="center" class="installation">
-      <h2 class="display-1">Installation Openfaas</h2>
+    <v-row justify="center" id="installation">
+      <h2 class="text-h4">Installation Openfaas</h2>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'The next step in the process is the installation of OpenFaas. The easiest way is to use the Arkade downloader from OpenFaas. Arkade is a marketplace for different Kubernetes services.'"
+      :paragraph="'The next step in the process is the installation of OpenFaas. Use the Arkade downloader from OpenFaas. Arkade is a marketplace for different Kubernetes services.'"
     ></ParagraphSnippet>
 
     <CmdSnippet
@@ -176,27 +173,27 @@
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'OpenFaas uses for the installation the kubeconfig, which you installed previous. Also it necessary to use the load-balancer from OpenFaas which connects to the Services from Google Cloud to use their public IP service.'"
+      :paragraph="'OpenFaas uses the kubeconfig for the installation, which you installed previously. Also, it is necessary to use the load-balancer from OpenFaas which connects to the Services from Google Cloud to use their public IP service.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="install_openfaas"></CmdSnippet>
 
     <!-- 4 -->
-    <v-row justify="center" class="connection">
-      <h2 class="display-1">Connection to Openfaas</h2>
+    <v-row justify="center" id="connection">
+      <h2 class="text-h4">Connection to Openfaas</h2>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'Their two options two connect to the installed OpenFaas installation. The first one is to use the port-forward from Kubernetes or connect over the public IP. But first you need to install the OpenFaas Commandline tool.'"
+      :paragraph="'There are two options to connect to the installed OpenFaas installation. The first one is to use the port-forward from Kubernetes and the second option is to connect over the public IP. To do this, install the OpenFaas Commandline tool.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ curl -sSL https://cli.openfaas.com | sudo sh']"
     ></CmdSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Port-forwarding</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Port-forwarding</h3>
     </v-row>
     <ParagraphSnippet
-      :paragraph="'The port-forwarding of the cluster is only possible, if the installation process of OpenFaas is completed. This can be checked with te following command.'"
+      :paragraph="'The port-forwarding of the cluster is only possible if the installation process of OpenFaas is completed. This can be checked with the following command.'"
     ></ParagraphSnippet>
 
     <CmdSnippet
@@ -204,7 +201,7 @@
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'The next step is the forwarding of the 8080 port of the Kubernetes cluster to your local 8080 port. You need to choose the 8080 port because that is the standard port on which OpenFaas is listening.'"
+      :paragraph="'Next, forward the 8080 port of the Kubernetes cluster to your local 8080 port. You need to choose the 8080 port because that is the standard port on which OpenFaas is listening.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="[
@@ -213,12 +210,12 @@
     ></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'For the login to OpenFaas is the password needed. That can be retrieved with the Kubernetes command inside the brackets. To make it easier, you should save it into a variable on your system.'"
+      :paragraph="'For the login to OpenFaas you need the password. That can be retrieved with the Kubernetes command inside the brackets. To make it easier, you should save it into a variable on your system.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="openfaas_password"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'With the retrieved password you can now login as admin in to your OpenFaas cluster.'"
+      :paragraph="'With the retrieved password you can now login as admin into your OpenFaas cluster.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="[
@@ -226,22 +223,22 @@
       ]"
     ></CmdSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Connection over public IP</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Connection over public IP</h3>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'The steps for the login over a public IP are not that different to the port-forwarding method. As the first step you need to get the public IP from your cluster. That can be achieved with the folowing command in the brackets. Their should be no differences between different cloud service provider.'"
+      :paragraph="'The second option to connect to OpenFaas is over a public IP which is not that different to the port-forwarding method. As the first step you need to get the public IP from your cluster. That can be achieved with the following command in the brackets. There should be no differences between different cloud service providers.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="openfaas_ip"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'Then you retrieve the password from the cluster.'"
+      :paragraph="'Then, retrieve the password from the cluster.'"
     ></ParagraphSnippet>
     <CmdSnippet :code_array="openfaas_password"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'The difference in the login is the flag of the gateway. The default parameter of the faas-cli program is your localhost on port 8080. If the flag is not that, then the program tries to connect to this address. The gateway IP you retrieved from the previous command is extended with the port 8080, on which OpenFaas will listen. '"
+      :paragraph="'The difference in the login is the flag of the gateway. The default parameter of the faas-cli program in the port-forwarding option is your localhost on port 8080. If the flag were different, the program would try to connect to public address. The gateway IP you retrieved from the previous command is extended with the port 8080, on which OpenFaas will listen.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="[
@@ -250,126 +247,126 @@
     ></CmdSnippet>
 
     <!-- 5 -->
-    <v-row justify="center" class="function">
-      <h2 class="display-1">Creating Functions</h2>
+    <v-row justify="center" id="function">
+      <h2 class="text-h4">Creating Functions</h2>
     </v-row>
 
     <ParagraphSnippet
-      :paragraph="'Their exist two ways to add functions to your OpenFaas cluster. The first one is to add a function from the community store and the second one is to create a new and own function.'"
+      :paragraph="'There are two ways to add functions to your OpenFaas cluster. The first one is to add a function from the community store and the second one is to create a new function.'"
     ></ParagraphSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Add function from store</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Add function from store</h3>
     </v-row>
     <ParagraphSnippet
-      :paragraph="'The store is a collection from pre-build functions, which are created by the community. These are open-source and can be found under the following address:  https://github.com/openfaas/store. These functions are hosted in public docker repositories and can be added via the command line or the user interface. One example function, which is used below, gives information about the nodes in the Kubernetes cluster. If the function is called, it will return the number of CPUs, hostname, OS and uptime.'"
+      :paragraph="'The store is a collection of pre-build functions, which are created by the community. These are open-source and can be found under the following address: https://github.com/openfaas/store. These functions are hosted in public docker repositories and can be added via the command line or the user interface. One example function, which is used below, gives information about the nodes in the Kubernetes cluster. If the function is called, it will return the number of CPUs, hostname, OS and uptime.'"
     ></ParagraphSnippet>
 
     <CmdSnippet :code_array="openfaas_store"></CmdSnippet>
 
     <ParagraphSnippet
-      :paragraph="'How to interact with the installed function, depends on which connection variant you choose. This tutorial assumes, that you will use a public IP. Therefore we can call the function over its specific URL.'"
+      :paragraph="'How you interact with the installed function depends on which connection variant you choose. This tutorial assumes, that you use a public IP. Therefore, you can call the function over its specific URL.'"
     ></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ curl $GATEWAY_IP/functions/NodeInfo']"
     ></CmdSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Add new function</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Add new function</h3>
     </v-row>
     
-    <ParagraphSnippet :paragraph="'If you want to create your own function, you need to install Docker to your local system first.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'If you want to create your own function, you need to install Docker to your local system.'"></ParagraphSnippet>
     <CmdSnippet :code_array="download_docker"></CmdSnippet>
 
-    <ParagraphSnippet :paragraph="'After the installation, it is necessary to connect your local docker instance to a public docker repository. If you do not have a account at a public docker repository, you can create own here: https://hub.docker.com/. After the creation you can log in with the following command.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'After the installation, connect your local docker instance to a public docker repository. If you do not have an account at a public docker repository, you can create it here: https://hub.docker.com/. Then, log in with the following command.'"></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ docker login --username user --password password']"
     ></CmdSnippet>
 
-    <ParagraphSnippet :paragraph="'OpenFaas uses template for the different programming languages. If you want to now, which how many templates and for which language exist for OpenFaas, you can look here: https://docs.openfaas.com/cli/templates/#template-store. For using a template, should download the prior.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'OpenFaas uses templates for the different programming languages. If you want to know, how many templates exist in which language in OpenFaas, use this link: https://docs.openfaas.com/cli/templates/#template-store.'"></ParagraphSnippet>
     <CmdSnippet :code_array="['$ faas-cli template pull']"></CmdSnippet>
 
-    <ParagraphSnippet :paragraph="'In this part, the theoretical process of creating a new template is shown. The section below shows the process of creating a python function. With the following command OpenFaas will create a yaml file, which contains the configuration of the function and a folder with specific files for the language.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'This part shows the theoretical process of creating a new template. The section below shows the process of creating a python function. With the following command OpenFaas will create a yaml file, which contains the configuration of the function and a folder with files for the specific language.'"></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ faas-cli new function-name --lang template']"
     ></CmdSnippet>
 
-    <ParagraphSnippet :paragraph="'Then you upload your function in to your OpenFaas cluster. This process consists of three sub-commands. The first command is build, where OpenFaas builds a docker image with the language specific information in it. The second step is pushing the build docker image to your public docker reposity. Finally the docker image gets deployed in your Kubernetes cluster.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'Then, upload your function to your OpenFaas cluster. This process consists of three sub- commands. The rst command is build, where OpenFaas builds a docker image with the language speci c information in it. The second step is pushing the built docker image to your public docker repository. Finally, the docker image gets deployed in your Kubernetes cluster.'"></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ faas-cli up -f function-name.yml']"
     ></CmdSnippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Example function</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Example function</h3>
     </v-row>
-    <ParagraphSnippet :paragraph="'How the creation of function can be done, is shown be the creation of a python3 function. The first step is to create the yaml and folder with following command. You can change the name of the function from test to anything you want.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'The process of creating a function is shown by the example of a python3 function.  Firstly, create the yaml and folder with the following command. You can change the name of the function from test to anything you want.'"></ParagraphSnippet>
 
     <CmdSnippet
       :code_array="['$ faas-cli new test --lang python3']"
     ></CmdSnippet>
     
-    <ParagraphSnippet :paragraph="'As next you need to modify the test.yml file, which was created. If you have a static URL, to which your OpenFaas cluster is connected to, you can insert in the gateway line your Url. In the case of only having the IP from your Cloud provider, it will be a lot easier for the automation, if you use a docker variable instead of hardcoding the IP in to the configuration. The variable is given in the up command from OpenFaas. The second import change is the parameter image. There you define, where the docker image will be saved. The first part should be the docker_id and the second paramter the repository name. '"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'Next, modify the previously created test.yml file. If your OpenFaas cluster is connected to a static URL, insert the gateway line into your url. If you only have the IP from your Cloud provider, it will be a lot easier for the automation, if you use a docker variable instead of hardcoding the IP into the configuration. The variable is given in the up command from OpenFaas. The second important change is the parameter image. There you define, where the docker image will be saved. The first parameter is the docker_id, the second is the repository name.'"></ParagraphSnippet>
     <Code-Snippet :code_array="test_yaml"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'The code of the function will be defined in the file test/handler.py. In this example it will only return a string as response. Therefore you also don\'t need to add you used packages in the requirements.txt file. The python compiler will look in to this file, which packages you used and on which version they are, so they can be downloaded. '"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'The code of the function is defined in the file test/handler.py. In this example it will only return a string as response. Therefore, you do not need to add your used packages in the requirements.txt file. The python compiler will look into this file, determine which packages you used and on which version they are, so they can be downloaded.'"></ParagraphSnippet>
     <Code-Snippet :code_array="handler_py"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'To finish the creation process you need to upload the function. Here you mention the gateway IP, so that it then be inserted in the test.yml file.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'To finish the creation process you need to upload the function. Here you mention the gateway IP, so that it can be inserted in the test.yml file.'"></ParagraphSnippet>
     <CmdSnippet
       :code_array="['$ URL=$GATEWAY_IP faas-cli up -f test.yml']"
     ></CmdSnippet>
 
     <!-- 6 -->
-    <v-row justify="center" class="new">
-      <h2 class="display-1">Creating finale Pipelines</h2>
+    <v-row justify="center" id="new">
+      <h2 class="text-h4">Creating finale Pipelines</h2>
       
       
     </v-row>
-    <ParagraphSnippet :paragraph="'To make it more readable and understandable, the pipeline is split into logical steps. These are two pipelines with two different tasks. But they have a lot of common code so it is splitted in three parts. Both pipelines use the same initialization phase and differ afterwords.'"></ParagraphSnippet>
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Initialization</h3>
+    <ParagraphSnippet :paragraph="'To make the pipeline more readable and understandable, it is split into logical steps. There are two pipelines with two different tasks. There is a lot of overlap, so it is split into three parts. Both pipelines use the same initialization phase and differ afterwards.'"></ParagraphSnippet>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Initialization</h3>
     </v-row>
-    <ParagraphSnippet :paragraph="'The first part is the configuration of Github specific settings. These can change depending on the provider of the pipeline provider. Here is defined, on which branches the pipeline should trigger or which os it will run.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'The first part is the configuration of Github specific settings. These can change depending on the pipeline provider. This defines on which branches the pipeline should trigger or which os it will run.'"></ParagraphSnippet>
     <Code-Snippet :code_array="initialization_1"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'The next section defines the packages, which will be later used. Depending on which pipeline you implement, not all packages needs to be defined.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'The next section defines the packages, which will later be used. Depending on which pipeline you implement, not all packages need to be defined.'"></ParagraphSnippet>
     <Code-Snippet :code_array="initialization_2"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'To get a connection to Google Cloud inside the pipeline. You need to download your specific credentials from Google Cloud. Then the easiest way is it, to add the credentials as secret in your Github repository. When the step gets executed, it will takes the credentials from the secrets.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'To get a connection to Google Cloud inside the pipeline you need to download your specific credentials from Google Cloud. Then, add the credentials as secrets in your Github repository. When the step is executed, it will take the credentials from the secrets.'"></ParagraphSnippet>
     <Code-Snippet :code_array="initialization_3"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'This section is only needed, if you want to create a new function. With the docker package, username and access_token you can get access to your docker hub account.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'You only need this section, if you want to create a new function. With the docker package, username and access_token you can get access to your docker hub account.'"></ParagraphSnippet>
     <Code-Snippet :code_array="initialization_4"></Code-Snippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">Create Cluster, install OpenFaas and upload function</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Create Cluster, install OpenFaas and upload function</h3>
     </v-row>
-    <ParagraphSnippet :paragraph="'For creating the cluster, the pipeline executes terraform apply. It is important to add the flag auto-approve, because you can not do it by hand. This step can take around 20 minutes.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'For creating the cluster, the pipeline executes “terraform apply”. It is important to add the flag auto-approve because you cannot do it by hand. This step can take around 20 minutes.'"></ParagraphSnippet>
     <Code-Snippet :code_array="create_cluster_1"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'After the cluster is created, the pipelines receives the kubeconfig credentials from Google Cloud and saves them locally.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'After the cluster is created, the pipeline receives the kubeconfig credentials from Google Cloud and saves them locally.'"></ParagraphSnippet>
     <Code-Snippet :code_array="create_cluster_2"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'With the credentials the pipeline will install OpenFaas in to the cluster.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'With the credentials the pipeline will install OpenFaas into the cluster.'"></ParagraphSnippet>
     <Code-Snippet :code_array="create_cluster_3"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'It can happen, that some process in the background take longer and the pipeline goes to the next step. That happens especially with IP address. Therefore the pipeline waits 2 minutes to be sure, that everything is loaded and everything is configured. After the waiting time the pipeline retrieves the IP and password from the pipeline.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'It is possible, that the pipeline goes to the next step because some process in the background takes longer. That happens especially when using the IP address. Therefore, the pipeline waits 2 minutes to be sure, that everything is loaded and configured. After the waiting time the pipeline retrieves the IP and password from the pipeline.'"></ParagraphSnippet>
     <Code-Snippet :code_array="create_cluster_4"></Code-Snippet>
 
     <ParagraphSnippet :paragraph="'As the last step the pipeline will connect to OpenFaas and will install a function from the store as proof of work.'"></ParagraphSnippet>
     <Code-Snippet :code_array="create_cluster_5"></Code-Snippet>
 
-    <v-row justify="center">
-      <h3 class="headline font-weight-bold">add function to existing cluster</h3>
+    <v-row justify="center" class="mt-5">
+      <h3 class="text-h5 font-weight-bold">Add function to existing cluster</h3>
     </v-row>
     <!-- <ParagraphSnippet :paragraph="''"></ParagraphSnippet> -->
-    <ParagraphSnippet :paragraph="'This pipeline will only work, if there is a OpenFaas cluster running at your cloud provider. As a first step the pipeline gets the Kubernetes credentials from Google Cloud.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'This pipeline only works if there is an OpenFaas cluster running at your cloud provider. Firstly, the pipeline gets the Kubernetes credentials from Google Cloud.'"></ParagraphSnippet>
     <Code-Snippet :code_array="add_function_1"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'Then it will receive the IP and password for the OpenFaas connection.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'Then, it receives the IP and password for the OpenFaas connection.'"></ParagraphSnippet>
     <Code-Snippet :code_array="add_function_2"></Code-Snippet>
 
-    <ParagraphSnippet :paragraph="'As a last step upload the new function to the OpenFaas cluster. The function code and configuration file need to be in the Github repository. At the moment the pipeline can not differentiate between different functions in the same repository. This pipeline is only a proof of work and needs to be extended for wider tasks.'"></ParagraphSnippet>
+    <ParagraphSnippet :paragraph="'Lastly, upload the new function to the OpenFaas cluster. The function code and configuration file need to be in the Github repository. Currently, the pipeline cannot differentiate between different functions in the same repository. This pipeline is only a proof of work and needs to be extended for further tasks.'"></ParagraphSnippet>
     <Code-Snippet :code_array="add_function_3"></Code-Snippet>
   </v-container>
 </template>
@@ -383,7 +380,8 @@ export default {
   components: { CodeSnippet, CmdSnippet, ParagraphSnippet },
   methods: {
     scroll(item) {
-      this.$vuetify.goTo("." + item.scroll);
+      //this.$vuetify.goTo("." + item.scroll);
+      document.getElementById(item).scrollIntoView()
     },
   },
   data: () => ({

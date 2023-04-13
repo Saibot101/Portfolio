@@ -16,7 +16,7 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-btn icon class="mt-5 mr-5" @click="copyClipboard">
-          <v-icon color="black"> mdi-content-copy </v-icon>
+          <v-icon color="black" icon="mdi-content-copy">  </v-icon>
         </v-btn>
         <v-snackbar
           v-model="snackbar"

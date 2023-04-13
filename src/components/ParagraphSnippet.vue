@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-card width="1000" flat class="mt-5">
-      <p class="body-1">{{ text }}</p>
+      <p class="text-subtitle-1">{{ text }}</p>
     </v-card>
   </v-row>
 </template>
