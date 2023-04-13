@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://saibot101.github.io/portfolio/",
+  "homepage": "https://saibot101.github.io/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
