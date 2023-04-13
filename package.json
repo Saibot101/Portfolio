@@ -5,7 +5,7 @@
   "homepage": "https://saibot101.github.io/portfolio/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/portfolio/",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "deploy": "gh-pages -d dist"
