@@ -7,6 +7,8 @@ import Contact from '../views/Contacts.vue';
 import Layout from '../layouts/default/Default.vue';
 import Cloud from '../views/portfolio/CloudPortfolio.vue';
 import Telegram from '../views/portfolio/TelegramPortfolio.vue';
+import Cluster from '../views/portfolio/TelegramCluster.vue';
+import History from '../views/portfolio/TelegramHistory.vue';
 
 
 const routes = [
@@ -43,6 +45,22 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: Telegram,
+      },
+      {
+        path: '/port/cluster',
+        name: 'Cluster',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: Cluster,
+      },
+      {
+        path: '/port/history',
+        name: 'History',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: History,
       },
       {
         path: '/cv',
