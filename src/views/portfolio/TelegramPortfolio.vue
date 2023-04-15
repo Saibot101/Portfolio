@@ -75,7 +75,7 @@ export default {
     return {
       list_inhalt: [
         { name: "Introduction", scroll: "introduction" },
-        { name: "Preperation", scroll: "preperation" },
+        { name: "Preparation", scroll: "preperation" },
         { name: "Visualization", scroll: "visualization" },
       ],
       json: [
