@@ -381,7 +381,7 @@ export default {
   methods: {
     scroll(item) {
       //this.$vuetify.goTo("." + item.scroll);
-      document.getElementById(item).scrollIntoView()
+      document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
   },
   data: () => ({
