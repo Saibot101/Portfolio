@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-card
       width="750"
-      color="grey lighten-2"
+      color="grey-darken-3"
       outlined
       elevation="8"
       rounded

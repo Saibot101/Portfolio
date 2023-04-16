@@ -3,10 +3,13 @@
     <h1 class="text-center mt-10 mb-5 text-h3">
       Visualizing telegram channels in a networkgraph with the python package pyvis
     </h1>
+    <v-row justify="center" id="introduction" class="mt-10">
+      <h2 class="text-h4">Contents</h2>
+    </v-row>
     <v-row justify="center">
       <v-list dense>
         <v-list-item v-for="(item, i) in list_inhalt" :key="i" @click="scroll(item.scroll)">
-          {{ i }}. {{ item.name }}
+          {{ i+1 }}. {{ item.name }}
         </v-list-item>
       </v-list>
     </v-row>
