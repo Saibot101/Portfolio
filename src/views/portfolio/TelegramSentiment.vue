@@ -3,7 +3,7 @@
     <h1 class="text-center mt-10 mb-5 text-h3">
       Clustering messages from a german telegram channel
     </h1>
-    <v-row justify="center" id="introduction" class="mt-10">
+    <v-row justify="center" class="mt-10">
       <h2 class="text-h4">Contents</h2>
     </v-row>
     <v-row justify="center">
@@ -13,44 +13,183 @@
         </v-list-item>
       </v-list>
     </v-row>
-
+    <v-row justify="center" id="introduction" class="mt-10">
+      <h2 class="text-h4">Introduction</h2>
+    </v-row>
     <ParagraphSnippet :paragraph="'The last step in the text preparation step is to filter the empty messages.'">
     </ParagraphSnippet>
-    <CodeSnippet :code_array="text_preparation_3"></CodeSnippet>
+    <v-row justify="center" id="textpreparation" class="mt-10">
+      <h2 class="text-h4">Textpreparation</h2>
+    </v-row>
+    <ParagraphSnippet :paragraph="'The last step in the text preparation step is to filter the empty messages.'">
+    </ParagraphSnippet>
+    <v-row justify="center" id="sentiment" class="mt-10">
+      <h2 class="text-h4">Read Sentiment</h2>
+    </v-row>
+    <CodeSnippet :code_array="packages"></CodeSnippet>
+    <CodeSnippet :code_array="init"></CodeSnippet>
+    <CodeSnippet :code_array="sentiment_python"></CodeSnippet>
+    <CodeSnippet :code_array="sentiment_js"></CodeSnippet>
+    <v-row justify="center" id="visualization" class="mt-10">
+      <h2 class="text-h4">Prepare visualization</h2>
+    </v-row>
+    <CodeSnippet :code_array="prepare_sent"></CodeSnippet>
+    <CodeSnippet :code_array="prepare_vis"></CodeSnippet>
+
+    <v-row>
+      <v-col class="d-flex flex-column justify-center align-center">
+        <v-card outlined elevation="1" height="50vh" width="100vh" class="mt-5 pb-n5">
+          <apexchart width="100%" height="100%" type="line" :options="chartOptions" :series="series"></apexchart>
+        </v-card>
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 <script>
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
+import VueApexCharts from 'vue3-apexcharts'
+
+import data from "./final_sentiment.json"
 export default {
-  components: { CodeSnippet, ParagraphSnippet },
+  components: { CodeSnippet, ParagraphSnippet, "apexchart": VueApexCharts, },
   methods: {
     scroll(item) {
       //this.$vuetify.goTo("." + item.scroll);
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
   },
+  beforeMount() {
+    this.series = data
+  },
   data() {
     return {
       list_inhalt: [
         { name: "Introduction", scroll: "introduction" },
-        { name: "Preparation", scroll: "preperation" },
-        { name: "Visualization", scroll: "visualization" },
+        { name: "Textpreparation", scroll: "textpreparation" },
+        { name: "Read Sentiment", scroll: "sentiment" },
+        { name: "Prepare visualization", scroll: "visualization" },
+      ], series: [{
+        name: 'Income',
+        color: "#EE3A41",
+        data: [[new Date("01.01.2021").getTime(), 1.330],]
+      }],
+      chartOptions: {
+        chart: {
+          zoom: {
+            type: 'x',
+            enabled: true,
+            autoScaleYaxis: true
+          },
+          toolbar: {
+            autoSelected: 'zoom'
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        markers: {
+          size: 0,
+        },
+        title: {
+          text: 'Sentiment for all messages',
+          align: 'center'
+        },
+
+        yaxis: {
+          labels: {
+            formatter: function (val) {
+              return val.toFixed(2);
+            },
+          },
+          title: {
+            text: 'Sentiment'
+          },
+        },
+        xaxis: {
+          type: 'category',
+          tickAmount: 10
+        },
+      },
+      packages: [
+        'from textblob_de import TextBlobDE as TextBlob',
+        'from germansentiment import SentimentModel',
+        'import spacy',
+        'from spacy_sentiws import spaCySentiWS'
       ],
-      json: [
-      '[',
-      '  {',
-      '    "channel":"channel_name",',
-      '    "user":[',
-      '      {',
-      '        "id":1234,',
-      '        "user":"name",',
-      '        "is_bot":true,',
-      '      },',
-      '    ]',
-      '  },',
-      ']'
+      init: [
+        'model = SentimentModel()',
+        'sentiment=[]',
+        ' ',
+        "nlp = spacy.load('de_core_news_sm')",
+        "nlp.add_pipe('sentiws', config={'sentiws_path': './data/'})"
       ],
+      sentiment_python: [
+        'for i,message in enumerate(data["messages"]):',
+        ' ',
+        '  blob = TextBlob(message)',
+        ' ',
+        '  result = model.predict_sentiment([message])',
+        ' ',
+        '  doc = nlp(message)',
+        '  sentiment_spacy = 0',
+        '  for token in doc:',
+        '    if token._.sentiws == None:',
+        '      sentiment_spacy += 0',
+        '    else:',
+        '      sentiment_spacy += token._.sentiws',
+        ' ',
+        '  sentiment.append({',
+        '    "message": message,',
+        '    "textblob":  blob.sentiment[0],',
+        '    "sentimentModel":result,',
+        '    "spacy":sentiment_spacy/len(doc)',
+        '  })'
+      ],
+      sentiment_js: [
+        "const ml = require('ml-sentiment')()",
+        "for (let message of jsonData){",
+        '  message["ml-sentiment"] = ml.classify(message["message"])',
+        '}'
+      ],
+      prepare_sent: [
+        'from statistics import mean',
+        ' ',
+        'sentimentModel = []',
+        'textblob = []',
+        'spacy = []',
+        'ml_sentiment = []',
+        ' ',
+        'for item in sentiment:',
+        '  if item["sentimentModel"][0] == "positive":',
+        '    sentimentModel.append(1)',
+        '  elif item["sentimentModel"][0]  == "neutral":',
+        '    sentimentModel.append(0)',
+        '  elif item["sentimentModel"][0]  == "negative":',
+        '    sentimentModel.append(-1)',
+        ' ',
+        '  textblob.append(item["textblob"])',
+        '  spacy.append(item["spacy"])',
+        '  ml_sentiment.append(item["ml-sentiment"])'
+      ],
+      prepare_vis: [
+        'window_list_sentiment = []',
+        'window_list_textblob = []',
+        'window_list_spacy = []',
+        'window_list_ml_sentiment = []',
+        ' ',
+        'for i in range(len(sentiment) - window_size + 1):',
+        '  window_list_spacy.append(mean(spacy[i: i + window_size]))',
+        '  window_list_sentiment.append(mean(sentimentModel[i: i + window_size]))',
+        '  window_list_textblob.append(mean(textblob[i: i + window_size]))',
+        '  window_list_ml_sentiment.append(mean(ml_sentiment[i: i + window_size]))',
+        ' ',
+        'range_spacy = range(0,len(window_list_spacy))   ',
+        'range_sentiment = range(0,len(window_list_sentiment)) ',
+        'range_textblob = range(0,len(window_list_textblob))',
+        'range_ml_sentiment = range(0,len(window_list_ml_sentiment))'
+      ]
     }
   }
 }

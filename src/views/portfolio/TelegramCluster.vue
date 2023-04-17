@@ -3,7 +3,7 @@
     <h1 class="text-center mt-10 mb-5 text-h3">
       Clustering messages from a german telegram channel
     </h1>
-    <v-row justify="center" id="introduction" class="mt-10">
+    <v-row justify="center"  class="mt-10">
       <h2 class="text-h4">Contents</h2>
     </v-row>
     <v-row justify="center">

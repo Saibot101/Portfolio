@@ -3,7 +3,7 @@
     <h1 class="text-center mt-10 mb-5 text-h3">
       Scraping Telemetr.io data to visualize the relative gain of members from specific telegram channels
     </h1>
-    <v-row justify="center" id="introduction" class="mt-10">
+    <v-row justify="center" class="mt-10">
       <h2 class="text-h4">Contents</h2>
     </v-row>
     <v-row justify="center">
@@ -14,8 +14,8 @@
       </v-list>
     </v-row>
 
-    <v-row justify="center" id="introduction">
-      <h2 class="text-h4" id="getting">Getting the data</h2>
+    <v-row justify="center" id="getting">
+      <h2 class="text-h4">Getting the data</h2>
     </v-row>
     <ParagraphSnippet
       :paragraph="'Telemetr.io tracks different data from telegrams channels. Before the scraping begins, the channels with their unique id need to be researched. Also the packages requests and BeautifulSoup need to be added.'">
@@ -31,8 +31,8 @@
     <ParagraphSnippet :paragraph="'After the table was found, the three columns date, change and absolute are read from table and stored in a new list.'">
     </ParagraphSnippet>
     <CodeSnippet :code_array="table_extraction"></CodeSnippet>
-    <v-row justify="center" id="introduction">
-      <h2 class="text-h4" id="preparation">Preparation of the data</h2>
+    <v-row justify="center" id="preparation">
+      <h2 class="text-h4">Preparation of the data</h2>
     </v-row>
     <ParagraphSnippet
       :paragraph="'For the preparation of the was the package pandas and dateutil used. The pandas DataFrame will be also used for the visualization of the data.'">
@@ -43,8 +43,8 @@
       :paragraph="'Firstly, every channel with less than 50 entries will be removed and not considered for the visualization. The date and the absolute number will be parsed to their specific format, so that plotly knows there is a time series object. The absolute values will be also reversed and the relative gains to their starting point will be also calculated.'">
     </ParagraphSnippet>
     <CodeSnippet :code_array="vis_prep"></CodeSnippet>
-    <v-row justify="center" id="introduction">
-      <h2 class="text-h4" id="visualization">Visualization the data</h2>
+    <v-row justify="center" id="visualization">
+      <h2 class="text-h4">Visualization the data</h2>
     </v-row>
     <ParagraphSnippet
       :paragraph="'In the last step the final DataFrame will be created and with the library plotly the final graph created.'">
