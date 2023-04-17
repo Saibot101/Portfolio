@@ -24,12 +24,15 @@
       <h2 class="text-h4">Preparation of the data</h2>
     </v-row>
     <ParagraphSnippet
-      :paragraph="'The data was scraped with the python package telethon. The json is in the following format:'">
+      :paragraph="'The telegram messages ware scraped with the python package telethon. The json is in the following format:'">
     </ParagraphSnippet>
     <CodeSnippet :code_array="json"></CodeSnippet>
+    <ParagraphSnippet
+      :paragraph="'At the moment the users are sorted to the different channels. The goal is to show the connection between to different users. So the structure of the list needs to be changed. Now every user is stored as a object with the corresponding channels as a list inside the object.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="start"></CodeSnippet>
     <ParagraphSnippet
-      :paragraph="'Firstly, every user gets sorted out, if it is bot or is a less then 6 channels. If the number of channels a user is too low, then to many users with connections are in the network graph and the simulation does not run smoothly.'">
+      :paragraph="'Now every user gets sorted out, if it is bot or has less then 6 channels. If the number of channels a user have is too low, then to many users with weak connections are in the network graph and the simulation does not run smoothly.'">
     </ParagraphSnippet>
     <CodeSnippet :code_array="filter_1"></CodeSnippet>
     <ParagraphSnippet
@@ -61,6 +64,8 @@
       :paragraph="'Before the graph will be calculated again, the existence of the nodes from the edges in the reduced list will be checked.'">
     </ParagraphSnippet>
     <CodeSnippet :code_array="end"></CodeSnippet>
+    <ParagraphSnippet :paragraph="'The final network graph can be visited here: https://saibot101.github.io/telegram_graph/.'">
+    </ParagraphSnippet>
   </v-container>
 </template>
 <script>
@@ -99,7 +104,7 @@ export default {
         'import json',
         'g = open("json file","r")',
         'data = json.load(g)',
-        '',
+        ' ',
         '#get every user',
         'user_list = []',
         'for item in data:',
