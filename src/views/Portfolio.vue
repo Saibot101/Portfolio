@@ -4,7 +4,7 @@
     <h5 class="text-center text-h5 mt-2 mb-5">
       In this section I present my projects from university and my self learning
       adventures. <br />
-      I wrote for the Cloud and Telegram project blog entries with explenations.
+      Behind the newer tiles are blog entries and behind older tiles links to my github page.
       <br />
       On my Github page are more projects uploaded.
     </h5>

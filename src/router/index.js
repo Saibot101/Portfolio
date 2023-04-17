@@ -10,6 +10,7 @@ import Telegram from '../views/portfolio/TelegramPortfolio.vue';
 import Cluster from '../views/portfolio/TelegramCluster.vue';
 import History from '../views/portfolio/TelegramHistory.vue';
 import Geoportal from '../views/portfolio/Geoportal.vue';
+import Sentiment from '../views/portfolio/TelegramSentiment.vue';
 
 const routes = [
   {
@@ -69,6 +70,14 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: Geoportal,
+      },
+      {
+        path: '/port/sentiment',
+        name: 'Sentiment',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: Sentiment,
       },
       {
         path: '/cv',
