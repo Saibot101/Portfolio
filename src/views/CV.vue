@@ -16,6 +16,9 @@
     <v-divider class="mx-5 mt-5"></v-divider>
     <h2 class="text-center font-weight-medium mt-5 text-h5">Experience</h2>
     <h5 class="text-center text-subtitle-1 mt-5">
+      Working Student as Data Scientist at SKS Data Vision
+    </h5>
+    <h5 class="text-center text-subtitle-1 mt-5">
       Working Student as Fullstack Developer at msg systems AG
     </h5>
     <h5 class="text-center text-subtitle-1 mt-2">

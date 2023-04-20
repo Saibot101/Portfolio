@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <h1 class="text-center mt-10 mb-5 text-h3">
-      Clustering messages from a german telegram channel
+      Determine sentiment from german telegram channel
     </h1>
     <v-row justify="center" class="mt-10">
       <h2 class="text-h4">Contents</h2>
@@ -16,26 +16,42 @@
     <v-row justify="center" id="introduction" class="mt-10">
       <h2 class="text-h4">Introduction</h2>
     </v-row>
-    <ParagraphSnippet :paragraph="'The last step in the text preparation step is to filter the empty messages.'">
+    <ParagraphSnippet :paragraph="'The sentiment from a text gives you clues about the feelings from the sender while sending. For example, it can be helpful for customer satisfaction to read the sentiment from text messages and treat messages with different sentiment differently. So, the sentiment helps to better understand the customer. In this blog the sentiment to only German messages will be evaluated.'">
     </ParagraphSnippet>
     <v-row justify="center" id="textpreparation" class="mt-10">
       <h2 class="text-h4">Textpreparation</h2>
     </v-row>
-    <ParagraphSnippet :paragraph="'The last step in the text preparation step is to filter the empty messages.'">
+    <ParagraphSnippet :paragraph="'Because the text preparation was explained thoroughly in the blog entry to the topic clustering (https://saibot101.github.io/portfolio/port/cluster) and I do not want to write the same text twice, I left the skip the topic here.'">
     </ParagraphSnippet>
     <v-row justify="center" id="sentiment" class="mt-10">
-      <h2 class="text-h4">Read Sentiment</h2>
+      <h2 class="text-h4">Read Sentiment Python</h2>
     </v-row>
+    <ParagraphSnippet :paragraph="'Three different packages will be used to evaluate the sentiment of the messages. The most popular package from these three is spacy. Here an extension to the basic spacy will be used, which is based on SentiWS. Textblob and germansentiment are specially trained on the German language and more a niche package.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="packages"></CodeSnippet>
+    <ParagraphSnippet :paragraph="'All models will be initialized. For spacy a pipeline will be created, that is loading the SentiWS model. That specific needs to be downloaded prior.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="init"></CodeSnippet>
+    <ParagraphSnippet :paragraph="'After the messages got cleaned, the sentiment of the messages will be determined. For spacy the sentiment for all words of a message will be determined and then the mean of all the sentiments will be calculated.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="sentiment_python"></CodeSnippet>
+    <v-row justify="center" id="node" class="mt-10">
+      <h2 class="text-h4">Read Sentiment Node</h2>
+    </v-row>
+    <ParagraphSnippet :paragraph="'The node package ml-sentiment allows to determine the sentiment for German messages. The package will be imported in the JavaScript file, the sentiment evaluated and stored to the file system.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="sentiment_js"></CodeSnippet>
     <v-row justify="center" id="visualization" class="mt-10">
       <h2 class="text-h4">Prepare visualization</h2>
     </v-row>
+    <ParagraphSnippet :paragraph="'For the visualization firstly the response from germansentiment needs to be converted, because the responses can be: “negative”, “neutral”, “positive”.  To make the transfer between Python and JavaScript easier, the responses are stored in a single JSON-array. For the visualization it is easier, to have separate arrays.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="prepare_sent"></CodeSnippet>
+    <ParagraphSnippet :paragraph="'To smooth the line in the following line chart, a window of the size of 300 is calculated. That makes it easier to see and read trends in the chart.'">
+    </ParagraphSnippet>
     <CodeSnippet :code_array="prepare_vis"></CodeSnippet>
-
+    <ParagraphSnippet :paragraph="'In the chart can be the difference of the different packages admired. With better models that run on bigger hardware can be sentiment better determined. But it also shows how hard it is for not English written texts to be classified correctly. '">
+    </ParagraphSnippet>
     <v-row>
       <v-col class="d-flex flex-column justify-center align-center">
         <v-card outlined elevation="1" height="50vh" width="100vh" class="mt-5 pb-n5">
@@ -68,7 +84,8 @@ export default {
       list_inhalt: [
         { name: "Introduction", scroll: "introduction" },
         { name: "Textpreparation", scroll: "textpreparation" },
-        { name: "Read Sentiment", scroll: "sentiment" },
+        { name: "Read Sentiment Python", scroll: "sentiment" },
+        { name: "Read Sentiment Node", scroll: "node" },
         { name: "Prepare visualization", scroll: "visualization" },
       ], series: [{
         name: 'Income',
@@ -134,17 +151,20 @@ export default {
         ' ',
         '  doc = nlp(message)',
         '  sentiment_spacy = 0',
+        '  count = 0',
+        ' ',
         '  for token in doc:',
-        '    if token._.sentiws == None:',
-        '      sentiment_spacy += 0',
-        '    else:',
+        '    if token._.sentiws != None:',
         '      sentiment_spacy += token._.sentiws',
+        ' ',
+        '  if count == 0:',
+        '    count=1',
         ' ',
         '  sentiment.append({',
         '    "message": message,',
         '    "textblob":  blob.sentiment[0],',
         '    "sentimentModel":result,',
-        '    "spacy":sentiment_spacy/len(doc)',
+        '    "spacy":sentiment_spacy/count',
         '  })'
       ],
       sentiment_js: [

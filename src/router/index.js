@@ -11,6 +11,7 @@ import Cluster from '../views/portfolio/TelegramCluster.vue';
 import History from '../views/portfolio/TelegramHistory.vue';
 import Geoportal from '../views/portfolio/Geoportal.vue';
 import Sentiment from '../views/portfolio/TelegramSentiment.vue';
+import Langchain from '../views/portfolio/LangchainExample.vue';
 
 const routes = [
   {
@@ -78,6 +79,14 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: Sentiment,
+      },
+      {
+        path: '/port/langchain',
+        name: 'Langchain',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: Langchain,
       },
       {
         path: '/cv',
