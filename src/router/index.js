@@ -1,5 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
+import axios from 'axios';
 import Home from '../views/Home.vue';
 import Portfolio from '../views/Portfolio.vue';
 import CV from '../views/CV.vue';
@@ -30,7 +31,7 @@ const routes = [
         path: '/port',
         name: 'Portfolio',
         component: Portfolio,
-      
+
       },
       {
         path: '/port/cloud',
@@ -112,5 +113,28 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
+
+router.afterEach((to, from) => {
+
+  try{
+    axios({
+      method: "post",
+      url: "https://portfolio-backend-8tl9.onrender.com",
+      data: {
+        uuid: localStorage.getItem("uuid"),
+        from: from.path,
+        to: to.path,
+        timestamp: new Date().toLocaleString()
+      },
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+  } catch{
+
+  }
+
+})
+
 
 export default router
