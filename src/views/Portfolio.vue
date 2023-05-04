@@ -96,3 +96,17 @@
     </v-container>
   </div>
 </template>
+<script>
+import { useHead } from '@vueuse/head'
+export default{
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Portfolio overview from Tobias Maas",
+      meta:{
+        description:"This site shows all the portfolio entries from Tobias Maas.",
+      }
+    })
+  },
+}
+</script>

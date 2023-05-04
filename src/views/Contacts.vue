@@ -50,6 +50,7 @@
   </div>
 </template>
 <script>
+import { useHead } from '@vueuse/head'
 export default {
   data: () => ({
     valid: false,
@@ -66,6 +67,15 @@ export default {
       this.$refs.form.validate();
       //form.submit()
     },
+  },
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Contact site from Tobias Maas",
+      meta:{
+        description:"This site shows allows site visitors to contact Tobias Maas.",
+      }
+    })
   },
 };
 </script>

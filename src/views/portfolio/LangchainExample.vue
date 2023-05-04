@@ -79,6 +79,7 @@
 <script>
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
+import { useHead } from '@vueuse/head'
 export default {
   components: { CodeSnippet, ParagraphSnippet },
   methods: {
@@ -86,6 +87,15 @@ export default {
       //this.$vuetify.goTo("." + item.scroll);
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
+  },
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Creating a vectorstore from PDFs and query the store in different ways",
+      meta:{
+        description:"This tutorial shows how to query a vector store in different ways with LLM. In the first step, vectorstore is created and loaded with the data from the PDF. Then different ways are shown to query the vectorstore.",
+      }
+    })
   },
   data() {
     return {

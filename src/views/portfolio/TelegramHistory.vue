@@ -66,7 +66,7 @@
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
 import VueApexCharts from 'vue3-apexcharts'
-
+import { useHead } from '@vueuse/head'
 import data from "./js_array.json"
 
 export default {
@@ -81,7 +81,15 @@ export default {
     console.log(data)
     this.series = data
   },
-
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Scraping and visualizing data from telemetr.io",
+      meta:{
+        description:"This tutorial shows how to scrape the data from telemtr.io, preparing the data for visualization and visualize them.",
+      }
+    })
+  },
   data() {
     return {
       list_inhalt: [

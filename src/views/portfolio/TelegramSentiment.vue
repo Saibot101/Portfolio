@@ -66,7 +66,7 @@
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
 import VueApexCharts from 'vue3-apexcharts'
-
+import { useHead } from '@vueuse/head'
 import data from "./final_sentiment.json"
 export default {
   components: { CodeSnippet, ParagraphSnippet, "apexchart": VueApexCharts, },
@@ -75,6 +75,15 @@ export default {
       //this.$vuetify.goTo("." + item.scroll);
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
+  },
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Getting the sentiment from german telegram messages.",
+      meta:{
+        description:"This tutorial shows the different sentiment tools and visualizes their differences. The messages will be prepared before.",
+      }
+    })
   },
   beforeMount() {
     this.series = data

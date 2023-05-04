@@ -1,18 +1,19 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
 import axios from 'axios';
-import Home from '../views/Home.vue';
-import Portfolio from '../views/Portfolio.vue';
-import CV from '../views/CV.vue';
-import Contact from '../views/Contacts.vue';
-import Layout from '../layouts/default/Default.vue';
-import Cloud from '../views/portfolio/CloudPortfolio.vue';
-import Telegram from '../views/portfolio/TelegramPortfolio.vue';
-import Cluster from '../views/portfolio/TelegramCluster.vue';
-import History from '../views/portfolio/TelegramHistory.vue';
-import Geoportal from '../views/portfolio/Geoportal.vue';
-import Sentiment from '../views/portfolio/TelegramSentiment.vue';
-import Langchain from '../views/portfolio/LangchainExample.vue';
+const Home = () => import('../views/Home.vue');
+import Portfolio from'../views/Portfolio.vue'
+const CV = () => import('../views/CV.vue');
+const Contact = () => import('../views/Contacts.vue');
+import Layout from'../layouts/default/Default.vue'
+const Cloud = () => import('../views/portfolio/CloudPortfolio.vue');
+const Telegram = () => import('../views/portfolio/TelegramPortfolio.vue');
+const Cluster = () => import('../views/portfolio/TelegramCluster.vue');
+const History = () => import('../views/portfolio/TelegramHistory.vue');
+const Geoportal = () => import('../views/portfolio/Geoportal.vue');
+const Sentiment = () => import('../views/portfolio/TelegramSentiment.vue');
+const Langchain = () => import('../views/portfolio/LangchainExample.vue');
+const Chat = () => import('../views/portfolio/langchainChat.vue');
 
 const routes = [
   {
@@ -22,87 +23,61 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Home,
       },
       {
         path: '/port',
         name: 'Portfolio',
         component: Portfolio,
-
       },
       {
         path: '/port/cloud',
         name: 'Cloud',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Cloud,
       },
       {
         path: '/port/telegram',
         name: 'Telegram',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Telegram,
       },
       {
         path: '/port/cluster',
         name: 'Cluster',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Cluster,
       },
       {
         path: '/port/history',
         name: 'History',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: History,
       },
       {
         path: '/port/geoportal',
         name: 'Geoportal',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Geoportal,
       },
       {
         path: '/port/sentiment',
         name: 'Sentiment',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Sentiment,
       },
       {
         path: '/port/langchain',
         name: 'Langchain',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Langchain,
+      },
+      {
+        path: '/port/chat',
+        name: 'Chat',
+        component: Chat,
       },
       {
         path: '/cv',
         name: 'CV',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: CV,
       },
       {
         path: '/contact',
         name: 'Contact',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: Contact,
       },
     ],
@@ -115,7 +90,6 @@ const router = createRouter({
 })
 
 router.afterEach((to, from) => {
-
   try{
     axios({
       method: "post",
@@ -131,9 +105,7 @@ router.afterEach((to, from) => {
       }
     })
   } catch{
-
   }
-
 })
 
 

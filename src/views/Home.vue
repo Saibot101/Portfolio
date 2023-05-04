@@ -27,20 +27,24 @@
 
 <script>
 //import { EventBus } from "../event-bus";
-
+import { useHead } from '@vueuse/head'
 export default {
   name: "Home",
   data() {
     return {
-      draw: false, // if false then close
     };
+    
   },
-  //created() {
-    //EventBus.$on("drawer", () => {
-      //     <h3 class="white--text">{{draw}}</h3>
-      //this.draw = !this.draw;
-    //});
-  //},
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Start site Portfolio Tobias Maas",
+      meta:{
+        description:"Landing page to the portfolio website from Tobias Maas.",
+      }
+    })
+  }
+  
 };
 </script>
 

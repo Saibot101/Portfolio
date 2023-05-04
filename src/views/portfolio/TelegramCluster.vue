@@ -98,7 +98,7 @@
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
 import VueApexCharts from 'vue3-apexcharts'
-
+import { useHead } from '@vueuse/head'
 export default {
   components: { CodeSnippet, ParagraphSnippet, "apexchart": VueApexCharts },
   methods: {
@@ -107,7 +107,15 @@ export default {
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
   },
-
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Clustering german telegram channels.",
+      meta:{
+        description:"This tutorials shows how to cluster telegram channels. Before the clustering can begin, the data will be prepared and cleaned.",
+      }
+    })
+  },
   data() {
     return {
       list_inhalt: [

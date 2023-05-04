@@ -44,7 +44,17 @@
   </div>
 </template>
 <script>
+import { useHead } from '@vueuse/head'
 export default {
   name: "CV",
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "CV from Tobias Maas",
+      meta:{
+        description:"This site shows the CV from Tobias Maas.",
+      }
+    })
+  },
 };
 </script>

@@ -71,6 +71,7 @@
 <script>
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
+import { useHead } from '@vueuse/head'
 export default {
   components: { CodeSnippet, ParagraphSnippet },
   methods: {
@@ -78,6 +79,15 @@ export default {
       //this.$vuetify.goTo("." + item.scroll);
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
+  },
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Visualize the connections from members of different telegram channels",
+      meta:{
+        description:"Network visualization with Pyviz of telegram channels members. This tutorial include the preparation and visualization of the data.",
+      }
+    })
   },
   data() {
     return {

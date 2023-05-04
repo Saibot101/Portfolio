@@ -53,7 +53,7 @@
 <script>
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
-
+import { useHead } from '@vueuse/head'
 export default {
   components: { CodeSnippet, ParagraphSnippet },
   methods: {
@@ -62,7 +62,15 @@ export default {
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
   },
-
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "Scraping the Geoportal from Frankfurt am Main",
+      meta:{
+        description:"This tutorial shows how to scrape the geoportal GDI from the city of Frankfurt am Main.",
+      }
+    })
+  },
 
   data() {
     return {

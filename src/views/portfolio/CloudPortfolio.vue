@@ -376,7 +376,7 @@
 import CodeSnippet from "../../components/CodeSnippet.vue";
 import CmdSnippet from "../../components/CmdSnippet.vue";
 import ParagraphSnippet from "../../components/ParagraphSnippet.vue";
-//import goTo from 'vuetify/lib/services/goto'
+import { useHead } from '@vueuse/head'
 export default {
   name: "CloudPortfolio",
   components: { CodeSnippet, CmdSnippet, ParagraphSnippet },
@@ -385,6 +385,15 @@ export default {
       //this.$vuetify.goTo("." + item.scroll);
       document.getElementById(item).scrollIntoView({ behavior: "smooth" })
     },
+  },
+  setup(){
+    useHead({
+      // Can be static or computed
+      title: "CI/CD of Cloud Functions including the Service by using Infrastructure as Code",
+      meta:{
+        description:"This tutorial shows how to create a pipeline to automatically push OpenFAAS as a Kubernetes Cluster to Google Cloud.",
+      }
+    })
   },
   data: () => ({
     list_inhalt: [
