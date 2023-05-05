@@ -2,7 +2,7 @@
   <v-app-bar flat dense class="px-3">
     <v-app-bar-title>Tobias Maas</v-app-bar-title>
     <v-btn to="/">Home</v-btn>
-    <v-btn to="/port">Portfolio</v-btn>
+    <v-btn to="/portfolio">Portfolio</v-btn>
     <v-btn to="/cv">CV</v-btn>
     <v-btn to="/contact">Contact</v-btn>
   </v-app-bar>

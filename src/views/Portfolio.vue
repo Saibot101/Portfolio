@@ -11,49 +11,49 @@
     <v-container>
       <v-row class="mx-5">
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/langchain" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/langchain" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/langchain.png" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">Creating own Chatbot</v-card-title>
           </v-card>
         </v-col>
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/geoportal" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/geoportal" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/gdi.jpeg" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">Scraping Frankfurt Geoportal</v-card-title>
           </v-card>
         </v-col>
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/sentiment" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/sentiment" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/spacy.png" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">Determine sentiment from telegram messages</v-card-title>
           </v-card>
         </v-col>
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/cluster" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/cluster" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/telegram.jpeg" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">Clustering telegram messages</v-card-title>
           </v-card>
         </v-col>
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/history" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/history" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/telemtrio.png" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">Visualizing Telegram user data</v-card-title>
           </v-card>
         </v-col>
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/telegram" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/telegram" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/telegram.jpeg" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">Visualizing Telegram Network</v-card-title>
           </v-card>
         </v-col>
         <v-col lg="4" xl="3" md="6" sm="12">
-          <v-card class="pa-4 mb-6" outlined tile to="/port/cloud" :ripple="false" height="250px" width="320px">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/cloud" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/openfaas.jpeg" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>
             <v-card-title class="text-center">CI /CD of a Cloud Functions Service</v-card-title>

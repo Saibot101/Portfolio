@@ -26,47 +26,47 @@ const routes = [
         component: Home,
       },
       {
-        path: '/port',
+        path: '/portfolio',
         name: 'Portfolio',
         component: Portfolio,
       },
       {
-        path: '/port/cloud',
+        path: '/portfolio/cloud',
         name: 'Cloud',
         component: Cloud,
       },
       {
-        path: '/port/telegram',
+        path: '/portfolio/telegram',
         name: 'Telegram',
         component: Telegram,
       },
       {
-        path: '/port/cluster',
+        path: '/portfolio/cluster',
         name: 'Cluster',
         component: Cluster,
       },
       {
-        path: '/port/history',
+        path: '/portfolio/history',
         name: 'History',
         component: History,
       },
       {
-        path: '/port/geoportal',
+        path: '/portfolio/geoportal',
         name: 'Geoportal',
         component: Geoportal,
       },
       {
-        path: '/port/sentiment',
+        path: '/portfolio/sentiment',
         name: 'Sentiment',
         component: Sentiment,
       },
       {
-        path: '/port/langchain',
+        path: '/portfolio/langchain',
         name: 'Langchain',
         component: Langchain,
       },
       {
-        path: '/port/chat',
+        path: '/portfolio/chat',
         name: 'Chat',
         component: Chat,
       },
@@ -89,7 +89,7 @@ const router = createRouter({
   routes,
 })
 
-router.afterEach((to, from) => {
+router.afterEach((to, from) => {/*
   try{
     axios({
       method: "post",
@@ -105,7 +105,7 @@ router.afterEach((to, from) => {
       }
     })
   } catch{
-  }
+  }*/
 })
 
 
