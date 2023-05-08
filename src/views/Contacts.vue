@@ -71,7 +71,7 @@ export default {
   setup(){
     useHead({
       // Can be static or computed
-      title: "Contact site from Tobias Maas",
+      title: "Contact Tobias Maas",
       meta:{
         description:"This site shows allows site visitors to contact Tobias Maas.",
       }

@@ -38,7 +38,7 @@ export default {
   setup(){
     useHead({
       // Can be static or computed
-      title: "Start site Portfolio Tobias Maas",
+      title: "Tobias Maas Home Site",
       meta:{
         description:"Landing page to the portfolio website from Tobias Maas.",
       }

@@ -89,7 +89,7 @@ const router = createRouter({
   routes,
 })
 
-router.afterEach((to, from) => {/*
+router.afterEach((to, from) => {
   try{
     axios({
       method: "post",
@@ -105,7 +105,7 @@ router.afterEach((to, from) => {/*
       }
     })
   } catch{
-  }*/
+  }
 })
 
 
