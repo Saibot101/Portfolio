@@ -11,6 +11,13 @@
     <v-container>
       <v-row class="mx-5">
         <v-col lg="4" xl="3" md="6" sm="12">
+          <v-card class="pa-4 mb-6" outlined tile to="/portfolio/chatbot" :ripple="false" height="250px" width="320px">
+            <v-img src="../assets/cohere.png" height="165"> </v-img>
+            <v-divider class="mt-4"></v-divider>
+            <v-card-title class="text-center">PoC Q&A Chatbot</v-card-title>
+          </v-card>
+        </v-col>
+        <v-col lg="4" xl="3" md="6" sm="12">
           <v-card class="pa-4 mb-6" outlined tile to="/portfolio/langchain" :ripple="false" height="250px" width="320px">
             <v-img src="../assets/langchain.png" height="165"> </v-img>
             <v-divider class="mt-4"></v-divider>

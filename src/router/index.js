@@ -66,7 +66,7 @@ const routes = [
         component: Langchain,
       },
       {
-        path: '/portfolio/chat',
+        path: '/portfolio/chatbot',
         name: 'Chat',
         component: Chat,
       },
