@@ -14,6 +14,7 @@ const Geoportal = () => import('../views/portfolio/Geoportal.vue');
 const Sentiment = () => import('../views/portfolio/TelegramSentiment.vue');
 const Langchain = () => import('../views/portfolio/LangchainExample.vue');
 const Chat = () => import('../views/portfolio/langchainChat.vue');
+const Cohere = () => import('../views/portfolio/CohereQ&A.vue');
 
 const routes = [
   {
@@ -69,6 +70,11 @@ const routes = [
         path: '/portfolio/chatbot',
         name: 'Chat',
         component: Chat,
+      },
+      {
+        path: '/portfolio/cohere',
+        name: 'Cohere',
+        component: Cohere,
       },
       {
         path: '/cv',
